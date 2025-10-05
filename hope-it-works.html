@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; 
+      background-image: url('https://img.freepik.com/premium-vector/textile-digital-design-fabric-print-wallpaper-stock-shirt-designs_1104427-1707.jpg?semt=ais_hybrid&w=740&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95); /* slightly transparent to see background */
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 2em; /* bigger heading */
+      margin-bottom: 25px;
+    }
+
+    .inputs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; /* wrap on smaller screens */
+      gap: 15px; 
+      margin-bottom: 20px;
+    }
+
+    .input-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input {
+      width: 70px;  /* bigger input box */
+      height: 70px;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      font-size: 35px; /* bigger text */
+    }
+
+    .small-img {
+      width: 100px;  /* bigger images */
+      margin-top: 8px;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .message {
+      font-size: 18px;
+      display: none;
+      color: green;
+      font-weight: bold;
+    }
+    .error {
+      font-size: 18px;
+      display: none;
+      color: red;
+      font-weight: bold;
+    }
+
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 500px) {
+    .inputs {
+      gap: 10px;
+    }
+    input {
+      width: 55px;
+      height: 55px;
+      font-size: 20px;
+    }
+    .small-img {
+      width: 60px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 18px;
+    }
+    h2 {
+      font-size: 1.5em;
+    }
+    .message {
+      font-size: 18px;
+      display: none;
+      color: green;
+      font-weight: bold;
+    }
+    .error {
+      font-size: 18px;
+      display: none;
+      color: red;
+      font-weight: bold;
+    }
+
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter the missing numbers</h2>
+    <div class="inputs">
+      <div class="input-box">
+        <input type="number" id="n1" placeholder="##">
+        <img src="https://img.freepik.com/premium-photo/bouquet-yellow-daffodils-black-background_280340-1847.jpg" alt="hint1" class="small-img">
+      </div>
+      <div class="input-box">
+        <input type="number" id="n2" value="1" readonly>
+        <img src= "https://cdn.sanity.io/images/pn4rwssl/production/cfb626050e825a25105f531b92fa00a3f8351b0f-500x750.jpg?w=1440&q=75&auto=format" alt="hint2" class="small-img">
+      </div>
+      <div class="input-box">
+        <input type="number" id="n3" value="18" readonly>
+        <img src="https://storage.needpix.com/rsynced_images/red-rose-1505806371iOH.jpg" alt="hint3" class="small-img">
+      </div>
+      <div class="input-box">
+        <input type="number" id="n4" placeholder="##">
+        <img src="https://i.pinimg.com/474x/76/21/3c/76213c488a4e915de39bfa4fbd17d54f.jpg" alt="hint4" class="small-img">
+      </div>
+      <div class="input-box">
+        <input type="number" id="n5" placeholder="##">
+        <img src="https://img.freepik.com/premium-photo/white-phalaenopsis-orchid-flowers-black-background_335004-690.jpg" alt="hint5" class="small-img">
+      </div>
+</div>
+
+    <button onclick="checkCode()">Check</button>
+    <div class="message" id="success">🎉 Correct! You unlocked a message. <a href = 'https://docs.google.com/document/d/1QKsUsr_au8K43ppah07SH7h1_uXGJEnfS2ytDhP5wkw/edit?usp=sharing'>Click me</a></div>
+    <div class="error" id="error">❌ Wrong code, try again.</div>
+  </div>
+
+  <script>
+    function checkCode() {
+      const n1 = document.getElementById("n1").value.trim();
+      const n4 = document.getElementById("n4").value.trim();
+      const n5 = document.getElementById("n5").value.trim();
+
+      const success = document.getElementById("success");
+      const error = document.getElementById("error");
+
+      const correct = ["4", "9", "15"];
+
+      success.style.display = "none";
+      error.style.display = "none";
+
+      setTimeout(() => {
+        if (n1 === correct[0] && n4 === correct[1] && n5 === correct[2]) {
+          success.style.display = "block";
+        } else {
+          error.style.display = "block";
+        }
+      }, 50);
+    }
+  </script>
+</body>
+</html>
